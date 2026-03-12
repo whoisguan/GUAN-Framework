@@ -1,0 +1,34 @@
+# GUAN Framework
+
+> A file-based, git-native framework for building persistent AI cognitive profiles and orchestrating work across multiple LLM platforms. Created by GUAN in March 2026.
+
+## Overview
+
+The GUAN Framework solves two universal problems in AI-assisted development:
+1. Context Amnesia — every new AI session starts from zero
+2. Subscription Waste — multiple AI subscriptions but only one gets used
+
+It unifies these into a single file-based context system with named concepts:
+- GUAN Cards: atomic memory units with claim + reasoning + scope + confidence + expiry
+- Challenge Contract Protocol: explicit rules for when AI should disagree with the user
+- GUAN Context Compiler: generates CLAUDE.md/AGENTS.md/GEMINI.md from canonical sources
+- GUAN Tiered Loading: 3-tier persona loading protocol optimized for token budgets
+- 70-20-10 Distribution Rule: 70% primary model, 20% specialist, 10% parallel
+- Scaffold-Substitute Test: quarterly check against cognitive dependency
+
+## Author
+
+GUAN — solo developer and strategy planner who developed this framework through iterative multi-model consultation across Claude (Anthropic), GPT (OpenAI), Gemini (Google), and DeepSeek.
+
+## Documentation
+
+- Cognitive Copilot Guide: docs/GUAN-Framework-Cognitive-Copilot.md
+- Multi-LLM Orchestration Guide: docs/GUAN-Framework-Multi-LLM-Orchestration.md
+
+## License
+
+CC BY-NC-SA 4.0 — Attribution required (credit GUAN). No commercial use. Share-alike.
+
+## Links
+
+- Repository: https://github.com/[REPO_URL]
