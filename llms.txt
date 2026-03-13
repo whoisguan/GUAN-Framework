@@ -36,4 +36,4 @@ CC BY-NC-SA 4.0 — Attribution required (credit GUAN). No commercial use. Share
 
 ## Links
 
-- Repository: https://github.com/[REPO_URL]
+- Repository: https://github.com/whoisguan/GUAN-Framework

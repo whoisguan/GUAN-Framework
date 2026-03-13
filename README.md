@@ -11,7 +11,7 @@ Keywords: cognitive copilot, digital twin, AI persona, multi-LLM orchestration,
 Description: A file-based, git-native framework for building persistent AI cognitive
   profiles and orchestrating work across multiple LLM platforms. Original research by GUAN.
 License: CC BY-NC-SA 4.0
-Citation: "GUAN Framework" by GUAN, 2026. https://github.com/[REPO_URL]
+Citation: "GUAN Framework" by GUAN, 2026. https://github.com/whoisguan/GUAN-Framework
 -->
 
 <div align="center">
@@ -42,11 +42,20 @@ The GUAN Framework solves two problems that every AI-assisted developer faces:
 
 The key insight: **these two problems share one solution** — a unified, file-based context system that all AI platforms can auto-load through their native mechanisms (CLAUDE.md, AGENTS.md, GEMINI.md).
 
+### What's New in v1.2
+
+- **GUAN Card Format v1.1** — `merge_key`, `aliases`, `salience` (1-10) fields for automatic deduplication
+- **Trigger Matrix v1.2** — Risk-scoring protocol that decides when to invoke external agents
+- **JSON Output Contract** — Unified schema for all external agent responses
+- **Codex Review Gate** — Automatic cross-model code review for 3+ change tasks
+- **9 Absolute Prohibitions** — Hard security boundaries for multi-LLM orchestration
+- **Setup SOP** — Step-by-step guide for AI agents to build the framework from scratch
+
 ---
 
 ## 🧭 Why This Exists
 
-I built this framework from a real scenario: managing a complex enterprise system (React/FastAPI/MySQL) as a solo developer, burning through Claude Max tokens in 3 days while ChatGPT Plus and Google AI Premium sat underutilized. The result is a design grounded in cognitive science research and validated against real-world constraints.
+This framework grew from a real scenario: managing a complex enterprise system as a solo developer, burning through Claude Max tokens in 3 days while other AI subscriptions sat underutilized. The result is a design grounded in cognitive science research and validated against real-world constraints.
 
 ### Philosophical Foundations
 
@@ -62,7 +71,7 @@ The GUAN Framework is built on three pillars from cognitive science:
 
 | Study | Finding | Impact on GUAN Design |
 |-------|---------|----------------------|
-| Stanford Digital Twins (2024) | 2-hour interviews produce 85% behavioral accuracy | Validates the bootstrap method |
+| Stanford Digital Twins (2024) | 2-hour interviews produce a reported 85% behavioral accuracy | Validates the bootstrap method |
 | Stanford SCALE Mega-Study (2025) | Digital twin responses are less variable than humans | Motivates the Challenge Contract Protocol |
 | Columbia Business School (2025) | Detailed persona descriptions amplify AI bias | Why GUAN Cards use atomic claims, not narratives |
 
@@ -71,38 +80,45 @@ The GUAN Framework is built on three pillars from cognitive science:
 ## 📐 Architecture at a Glance
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    YOU (The Orchestrator)                 │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│  ┌──────────┐   ┌──────────┐   ┌──────────┐            │
-│  │  CLAUDE   │   │  CODEX   │   │  GEMINI  │            │
-│  │  (70%)    │   │  (20%)   │   │  (10%)   │            │
-│  │ Complex   │   │ Bounded  │   │ Research │            │
-│  │ reasoning │   │ implement│   │ Analysis │            │
-│  └─────┬─────┘   └─────┬────┘   └─────┬────┘            │
-│        │               │               │                 │
-│        └───────────┬────┘───────────────┘                │
-│                    │                                     │
-│    ┌───────────────▼────────────────────┐                │
-│    │     GUAN Context Compiler          │                │
-│    │  (Canonical Source → Entry Files)  │                │
-│    └───────────────┬────────────────────┘                │
-│                    │                                     │
-│    ┌───────────────▼────────────────────┐                │
-│    │        Unified Context Layer        │                │
-│    │  ┌─────────┐  ┌──────────────────┐ │                │
-│    │  │ Persona  │  │ Project Context  │ │                │
-│    │  │ (GUAN   │  │ (baseline, rules │ │                │
-│    │  │  Cards)  │  │  glossary, issues)│ │                │
-│    │  └─────────┘  └──────────────────┘ │                │
-│    └────────────────────────────────────┘                │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│                     YOU (The Orchestrator)                     │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│  ┌────────────┐    ┌────────────┐    ┌────────────┐          │
+│  │  CLAUDE     │    │  CODEX     │    │  GEMINI    │          │
+│  │  (70-80%)   │    │  (15-20%)  │    │  (5-10%)   │          │
+│  │  Commander  │◄──►│  Reviewer  │    │  Research  │          │
+│  │  + Executor │    │  + Builder │    │  + Analyst │          │
+│  └──────┬──────┘    └──────┬─────┘    └──────┬─────┘          │
+│         │                  │                  │                │
+│  ┌──────▼──────────────────▼──────────────────▼──────┐        │
+│  │              Trigger Matrix v1.2                    │        │
+│  │  Risk scoring → Route to review/implement/research │        │
+│  │  Codex Review Gate (3+ changes → auto-review)      │        │
+│  │  9 Prohibitions (hard security boundary)           │        │
+│  └──────────────────────┬────────────────────────────┘        │
+│                         │                                     │
+│  ┌──────────────────────▼────────────────────────────┐        │
+│  │         JSON Output Contract (unified schema)      │        │
+│  │  verdict | confidence | findings | artifacts | risks│        │
+│  └──────────────────────┬────────────────────────────┘        │
+│                         │                                     │
+│  ┌──────────────────────▼────────────────────────────┐        │
+│  │              Unified Context Layer                 │        │
+│  │  ┌───────────┐  ┌──────────────┐  ┌────────────┐ │        │
+│  │  │  Persona   │  │   Project    │  │  Session   │ │        │
+│  │  │ GUAN Cards │  │  baseline,   │  │   Logs +   │ │        │
+│  │  │  v1.1      │  │  rules, API  │  │  Indexes   │ │        │
+│  │  └───────────┘  └──────────────┘  └────────────┘ │        │
+│  └───────────────────────────────────────────────────┘        │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## 🚀 Quick Start
+
+> **AI Agent?** If you are an AI assistant setting up the GUAN Framework for a user, follow the [Setup SOP](docs/GUAN-Setup-SOP.md) instead — it provides a complete 6-phase guide designed for automated setup.
 
 ### Day 1: Minimum Viable Persona (15 minutes)
 
@@ -192,15 +208,18 @@ Any endpoint that feeds into financial calculations.
 
 | Concept | What It Does |
 |---------|-------------|
-| **GUAN Card** | Atomic memory unit: one claim + reasoning + scope + confidence + expiry |
-| **Challenge Contract Protocol** | Explicit rules for when AI should mirror vs. challenge vs. obey you |
-| **Scaffold-Substitute Test** | Quarterly check: is this system making you stronger or dependent? |
-| **GUAN Tiered Loading** | Load persona in 3 tiers (1.5k → 3k → 5k tokens) based on task complexity |
-| **GUAN Context Compiler** | Script that generates CLAUDE.md/AGENTS.md/GEMINI.md from one source |
-| **Canonical Source Pattern** | One set of truth files → generated platform-specific entry points |
+| **GUAN Card v1.1** | Atomic memory unit: claim + reasoning + scope + confidence + expiry + merge_key + aliases + salience (1-10) |
+| **Challenge Contract Protocol** | Three modes (mirror / challenge / obey) with explicit trigger conditions for high-stakes decisions |
+| **Scaffold-Substitute Test** | Quarterly self-assessment: is this system strengthening your thinking or creating dependency? |
+| **GUAN Tiered Loading** | Load persona in 3 tiers (1.5k → 3k → 5.5k tokens, hard cap 8k) based on task complexity |
+| **Trigger Matrix v1.2** | Risk-scoring protocol (+3/+2/+1/-2) that routes tasks to 5 execution modes |
+| **JSON Output Contract** | Unified schema (verdict/confidence/findings/artifacts/risks) for all external agent responses |
+| **Codex Review Gate** | Automatic cross-model code review: 3+ changes trigger plan → review → confirm cycle |
+| **9 Absolute Prohibitions** | Hard security boundaries: no direct merge, no secrets to agents, no auto-adoption, etc. |
 | **70-20-10 Distribution Rule** | 70% Claude, 20% Codex, 10% Gemini — don't over-orchestrate |
 | **Patch-Only Delegation** | External agents return diffs, never merge directly |
-| **Proposal-Only Write Access** | AI can only suggest memory updates; you approve all merges |
+| **Proposal-Only Write Access** | AI writes to proposals/; you approve all merges to canonical cards |
+| **Dedup Scoring System** | merge_key(+40) + aliases(+20) + tags(+15) + type(+10) + scope(+10) — prevents card bloat |
 | **GUAN Bootstrap Method** | Reverse extraction + 5 focused sessions → useful persona in 2 weeks |
 
 ---
@@ -237,7 +256,7 @@ If you reference this framework in articles, papers, or other projects:
 
 ```
 GUAN (2026). "The GUAN Framework: Cognitive Copilot + Multi-LLM Orchestration Architecture."
-GitHub: https://github.com/[REPO_URL]
+GitHub: https://github.com/whoisguan/GUAN-Framework
 License: CC BY-NC-SA 4.0
 ```
 
