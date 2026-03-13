@@ -713,6 +713,36 @@ This workflow replaces the need for separate Claude.ai conversations for most da
 
 ---
 
+## Codex Review Gate: Automated Cross-Model Code Review
+
+The GUAN Framework includes an automated code review mechanism that calls Codex CLI as an independent reviewer before Claude Code executes complex changes.
+
+### How It Works
+
+When a task involves 3 or more code changes, Claude Code automatically:
+1. Pauses and presents a detailed modification plan with impact assessment
+2. Calls `codex exec` in non-interactive mode to review the plan
+3. Evaluates Codex's feedback — adopting valid suggestions, explaining rejections
+4. Presents the final adjusted plan for user confirmation
+5. Executes only after user approval
+
+### Trigger Thresholds
+- 1-2 changes: direct execution, no review gate
+- 3-5 changes: automatic Codex review
+- 6+ changes: automatic Codex review + strong recommendation to batch
+
+### Technical Implementation
+Uses `codex exec --full-auto --ephemeral --skip-git-repo-check` which runs Codex in non-interactive headless mode, outputting results to stdout. This allows Claude Code to invoke Codex programmatically without requiring a separate terminal.
+
+### Exemptions
+- Documentation-only changes (.md files)
+- Style-only changes (CSS/Tailwind)
+- User explicitly says "skip review"
+
+This mechanism ensures that complex changes receive independent validation from a second AI model before execution, significantly reducing the risk of cascading bugs from large batch modifications.
+
+---
+
 ## 12. Implementation Timeline
 
 ### Week 1: Foundation (2-3 hours total)
