@@ -1,5 +1,5 @@
 ---
-# GUAN Challenge Contract Template v1.0
+# GUAN Challenge Contract Template v1.2
 # Customize this for your own use case
 ---
 
@@ -7,7 +7,7 @@
 
 > This file defines when your AI assistant should mirror your preferences, 
 > when it should challenge them, and when it should simply obey.
-> Part of the GUAN Framework (https://github.com/[REPO_URL])
+> Part of the GUAN Framework (https://github.com/whoisguan/GUAN-Framework)
 
 ## Mode: Mirror (Default)
 Use for routine, low-stakes work where speed matters more than deliberation.
