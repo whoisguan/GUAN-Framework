@@ -686,6 +686,33 @@ The real savings come from using Codex for tasks that would otherwise consume Cl
 
 ---
 
+## GUAN Slash Commands
+
+The framework provides three built-in slash commands for Claude Code that automate the session lifecycle:
+
+### `/start` — Session Initialization
+Loads persona context, scans projects directory, reads latest session log, and activates semi-automatic cognitive collection for the session.
+
+### `/save` — Session Closure
+Writes session log, prompts user to review any unprocessed cognitive collection suggestions, updates project baseline if needed, and commits all changes.
+
+### `/status` — System Overview
+Reports card counts by category, lists all discovered projects and their status, shows latest session log summary, and flags any pending proposals or empty core files.
+
+### Typical Daily Workflow
+
+```
+Open Claude Code
+cd to project directory
+/start                    → context loaded, ready to work
+[normal work session]     → AI suggests cards when it observes new insights
+/save                     → session log + cards committed
+```
+
+This workflow replaces the need for separate Claude.ai conversations for most daily work. Claude.ai is reserved for occasional deep strategy discussions or cross-domain analysis that benefit from its longer conversational memory.
+
+---
+
 ## 12. Implementation Timeline
 
 ### Week 1: Foundation (2-3 hours total)

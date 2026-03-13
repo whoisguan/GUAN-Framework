@@ -584,6 +584,50 @@ If persona loading routinely exceeds 8k tokens, apply GUAN's pruning protocol:
 
 ---
 
+## Semi-Automatic Cognitive Collection Protocol
+
+### Overview
+
+The GUAN Framework includes a semi-automatic mechanism for capturing new cognitive insights during daily work, without requiring dedicated "persona building" sessions.
+
+### How It Works
+
+During any Claude Code session initiated with `/start`, the AI monitors the conversation for cognitive value signals:
+
+**Trigger Conditions:**
+- User makes an important decision (architecture, business rules, tech choices)
+- User describes a new working pattern or preference not yet captured in cards
+- User makes a mistake and learns a lesson from it
+- User expresses a new principle or value judgment
+- User's behavior contradicts an existing card
+
+**When triggered, the AI appends a one-line prompt at the end of its response:**
+💾 认知收集建议：[brief description] — 需要保存为card吗？
+
+**User response:**
+- "存" → AI creates the card immediately in the correct directory, commits, and continues working
+- Ignore → AI takes no action, continues normally
+
+**At session end (`/save`):**
+- AI lists all unprocessed collection suggestions from the session
+- User decides which (if any) to save
+- Session log is written automatically
+
+### Why Semi-Automatic (Not Fully Automatic)
+
+Fully automatic collection produces noise. Research on digital twins (Stanford SCALE 2025) found that automated persona updates converge toward averages and lose the variability that makes human judgment valuable. The GUAN Protocol keeps the human as the merge authority while reducing the effort to near-zero: you only need to say "存" or ignore.
+
+### Card Volume Management
+
+Most sessions produce 0-1 new cards. The expected growth rate is:
+- Week 1-2: 1-2 cards/day (bootstrapping phase)
+- Week 3+: 2-3 cards/week (organic growth)
+- Mature state: ~50-80 active cards after 3 months
+
+If card count exceeds 80, trigger a pruning review: archive low-confidence cards, merge overlapping cards, re-evaluate temporal classifications.
+
+---
+
 ## 15. References
 
 1. Clark, A., & Chalmers, D. (1998). "The Extended Mind." *Analysis*, 58(1), 7-19.
