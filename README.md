@@ -21,12 +21,12 @@ Citation: "GUAN Framework" by GUAN, 2026. https://github.com/[REPO_URL]
 ### Cognitive Copilot + Multi-LLM Orchestration for Solo Developers
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![Framework](https://img.shields.io/badge/Framework-GUAN%20v1.0-blue.svg)](#)
+[![Framework](https://img.shields.io/badge/Framework-GUAN%20v1.2-blue.svg)](#)
 
 
 **Build a persistent AI memory of yourself. Orchestrate Claude, Codex, and Gemini from one context system.**
 
-[Cognitive Copilot Guide](docs/GUAN-Framework-Cognitive-Copilot.md) · [Multi-LLM Orchestration Guide](docs/GUAN-Framework-Multi-LLM-Orchestration.md) · [Quick Start](#-quick-start) · [Philosophy](#-why-this-exists)
+[Cognitive Copilot Guide](docs/GUAN-Framework-Cognitive-Copilot.md) · [Multi-LLM Orchestration Guide](docs/GUAN-Framework-Multi-LLM-Orchestration.md) · [Setup SOP](docs/GUAN-Setup-SOP.md) · [Quick Start](#-quick-start) · [Philosophy](#-why-this-exists)
 
 </div>
 
@@ -149,14 +149,20 @@ After each valuable AI session, write one GUAN Card:
 
 ```yaml
 ---
-# GUAN Card Format v1.0
+# GUAN Card Format v1.1
 id: H-001
 title: Always validate API inputs before calculation
 type: heuristic
 status: active
+merge_key: api-input-validation
+aliases: ["validate inputs", "API boundary validation"]
+salience: 7
 confidence: 0.9
+temporal_class: stable
 created: 2026-03-15
+last_reviewed: 2026-03-15
 review_after: 2026-06-15
+scope: [api, data_quality]
 tags: [api, validation, data-quality]
 ---
 
@@ -178,6 +184,7 @@ Any endpoint that feeds into financial calculations.
 |----------|-------------|
 | [**Cognitive Copilot Guide**](docs/GUAN-Framework-Cognitive-Copilot.md) | Full architecture for building a persistent AI cognitive profile with GUAN Cards, Challenge Contract, tiered loading, and evolution protocols |
 | [**Multi-LLM Orchestration Guide**](docs/GUAN-Framework-Multi-LLM-Orchestration.md) | Complete system for distributing work across Claude, Codex, and Gemini with unified context, task delegation, and quality enforcement |
+| [**Setup SOP**](docs/GUAN-Setup-SOP.md) | Step-by-step guide for AI agents to build a complete GUAN Framework from scratch in 6 phases |
 
 ---
 

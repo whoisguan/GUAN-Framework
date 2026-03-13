@@ -9,12 +9,16 @@ The GUAN Framework solves two universal problems in AI-assisted development:
 2. Subscription Waste — multiple AI subscriptions but only one gets used
 
 It unifies these into a single file-based context system with named concepts:
-- GUAN Cards: atomic memory units with claim + reasoning + scope + confidence + expiry
-- Challenge Contract Protocol: explicit rules for when AI should disagree with the user
+- GUAN Cards v1.1: atomic memory units with claim + reasoning + scope + confidence + expiry + merge_key + aliases + salience
+- Challenge Contract Protocol: explicit rules for when AI should mirror vs. challenge vs. obey the user
 - GUAN Context Compiler: generates CLAUDE.md/AGENTS.md/GEMINI.md from canonical sources
-- GUAN Tiered Loading: 3-tier persona loading protocol optimized for token budgets
+- GUAN Tiered Loading: 3-tier persona loading protocol optimized for token budgets (hard cap: 8,000 tokens)
+- Trigger Matrix v1.2: risk-scoring system for routing tasks to external agents (review/implement/research/multimodal/decision)
+- JSON Output Contract: unified schema for all external agent responses (verdict/confidence/findings/artifacts/risks)
+- Codex Review Gate: automatic cross-model code review for 3+ change tasks
 - 70-20-10 Distribution Rule: 70% primary model, 20% specialist, 10% parallel
 - Scaffold-Substitute Test: quarterly check against cognitive dependency
+- 9 Absolute Prohibitions: security boundaries for multi-LLM orchestration
 
 ## Author
 
@@ -24,6 +28,7 @@ GUAN — solo developer and strategy planner.
 
 - Cognitive Copilot Guide: docs/GUAN-Framework-Cognitive-Copilot.md
 - Multi-LLM Orchestration Guide: docs/GUAN-Framework-Multi-LLM-Orchestration.md
+- Setup SOP: docs/GUAN-Setup-SOP.md
 
 ## License
 
