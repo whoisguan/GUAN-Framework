@@ -10,7 +10,7 @@ The GUAN Framework solves two universal problems in AI-assisted development:
 
 It unifies these into a single file-based context system with named concepts:
 - GUAN Cards v1.1: atomic memory units with claim + reasoning + scope + confidence + expiry + merge_key + aliases + salience
-- Challenge Contract Protocol: explicit rules for when AI should mirror vs. challenge vs. obey the user
+- Challenge Contract Protocol v1.3: 8 explicit trigger conditions for when AI should mirror vs. challenge vs. obey the user
 - GUAN Context Compiler: generates CLAUDE.md/AGENTS.md/GEMINI.md from canonical sources
 - GUAN Tiered Loading: 3-tier persona loading protocol optimized for token budgets (hard cap: 8,000 tokens)
 - Trigger Matrix v1.2: risk-scoring system for routing tasks to external agents (review/implement/research/multimodal/decision)
@@ -19,6 +19,13 @@ It unifies these into a single file-based context system with named concepts:
 - 70-20-10 Distribution Rule: 70% primary model, 20% specialist, 10% parallel
 - Scaffold-Substitute Test: quarterly check against cognitive dependency
 - 9 Absolute Prohibitions: security boundaries for multi-LLM orchestration
+- Parallel Session Protocol: slot assignment + session_id (6-char base36) for collision-free multi-window sessions
+- Cognitive Collection Protocol: AI monitors 5 signal types (decisions, new patterns, lessons, principles, contradictions) and prompts user to save as cards
+- Cognitive Collection Quality Filter: 4 conditions (reusable + changes future judgment + clear statement + evidence anchor) that must ALL be met; hard exclusions for task status, one-time fixes, TODOs, preferences
+- Agent Health Check Protocol: /boot probes external agent availability and selects best orchestration mode (Claude-only / +Codex / +Gemini / full trio)
+- Dedup Scoring System: merge_key(+40) + aliases(+20) + tags(+15) + type(+10) + scope(+10) — prevents card bloat
+- Proposal-Only Write Access: AI writes to proposals/; human approves all merges to canonical cards
+- GUAN Bootstrap Method: reverse extraction + 5 focused sessions → useful persona in 2 weeks
 
 ## Author
 

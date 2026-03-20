@@ -21,7 +21,7 @@ Citation: "GUAN Framework" by GUAN, 2026. https://github.com/whoisguan/GUAN-Fram
 ### Cognitive Copilot + Multi-LLM Orchestration for Solo Developers
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![Framework](https://img.shields.io/badge/Framework-GUAN%20v1.2-blue.svg)](#)
+[![Framework](https://img.shields.io/badge/Framework-GUAN%20v1.3-blue.svg)](#)
 
 
 **Build a persistent AI memory of yourself. Orchestrate Claude, Codex, and Gemini from one context system.**
@@ -42,7 +42,15 @@ The GUAN Framework solves two problems that every AI-assisted developer faces:
 
 The key insight: **these two problems share one solution** — a unified, file-based context system that all AI platforms can auto-load through their native mechanisms (CLAUDE.md, AGENTS.md, GEMINI.md).
 
-### What's New in v1.2
+### What's New in v1.3
+
+- **Parallel Session Protocol** — `session_id` + `slot` mechanism prevents multi-window memory conflicts. Each window gets a unique 6-char base36 ID baked into the filename, making concurrent sessions collision-proof
+- **Challenge Contract v1.2** — Expanded from 4 domains to 8 trigger conditions, covering batch overload, requirement contradictions, optimistic effort estimates, and credential leak detection
+- **Semi-Automatic Cognitive Collection** — AI monitors for cognitive value signals (decisions, new patterns, lessons learned) and prompts the user to save them as cards
+- **Cognitive Collection Quality Filter** — 4 conditions that must ALL be met before a candidate insight becomes a card, plus hard exclusions for ephemeral data
+- **Agent Health Check Protocol** — `/boot` verifies external agent availability and selects the best available mode (Claude-only / +Codex / +Gemini / full trio)
+
+#### Carried from v1.2
 
 - **GUAN Card Format v1.1** — `merge_key`, `aliases`, `salience` (1-10) fields for automatic deduplication
 - **Trigger Matrix v1.2** — Risk-scoring protocol that decides when to invoke external agents
@@ -110,6 +118,12 @@ The GUAN Framework is built on three pillars from cognitive science:
 │  │  │ GUAN Cards │  │  baseline,   │  │   Logs +   │ │        │
 │  │  │  v1.1      │  │  rules, API  │  │  Indexes   │ │        │
 │  │  └───────────┘  └──────────────┘  └────────────┘ │        │
+│  └──────────────────────┬────────────────────────────┘        │
+│                         │                                     │
+│  ┌──────────────────────▼────────────────────────────┐        │
+│  │        Parallel Session Protocol (v1.3)            │        │
+│  │  slot assignment + session_id (6-char base36)      │        │
+│  │  idempotent index rebuild + proposal-based IPC     │        │
 │  └───────────────────────────────────────────────────┘        │
 └──────────────────────────────────────────────────────────────┘
 ```
@@ -220,6 +234,9 @@ Any endpoint that feeds into financial calculations.
 | **Patch-Only Delegation** | External agents return diffs, never merge directly |
 | **Proposal-Only Write Access** | AI writes to proposals/; you approve all merges to canonical cards |
 | **Dedup Scoring System** | merge_key(+40) + aliases(+20) + tags(+15) + type(+10) + scope(+10) — prevents card bloat |
+| **Parallel Session Protocol** | `slot` (human label) + `session_id` (6-char base36 write key) — multi-window without conflicts |
+| **Cognitive Collection Protocol** | AI monitors 5 signal types → prompts user → writes to proposals/ for human review |
+| **Agent Health Check** | `/boot` probes `codex --version` + `gemini --version` → selects best available orchestration mode |
 | **GUAN Bootstrap Method** | Reverse extraction + 5 focused sessions → useful persona in 2 weeks |
 
 ---
